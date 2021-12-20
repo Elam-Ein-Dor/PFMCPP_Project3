@@ -80,79 +80,6 @@ Part1 will be broken up into 5 separate steps
 3) move Thing 5-9 to between your Thing 4 and Thing 10.
 */
 
-/*
-Thing 5)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 6)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 7)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 8)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 9)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-
-
-
 
 
 /*
@@ -211,6 +138,76 @@ Thing 4) Piano
     3) change volume of notes
  */
  
+ /*
+Thing 5) Interface
+5 properties:
+    1) parameter knobs (position) (float)
+    2) parameter sliders (position) (float)
+    3) menu buttons (int)
+    4) keys (int)
+    5) mod wheels (position) (double)
+3 things it can do:
+    1) Play notes
+    2) Change Parameters
+    3) Lookup menus
+ */
+
+/*
+Thing 6) Display
+5 properties:
+    1) height in cm (float)
+    2) width in cm (float)
+    3) color (int)
+    4) brightness (double)
+    5) time of operation (double)
+3 things it can do:
+    1) show menus
+    2) detail parameters
+    3) change brightness
+ */
+
+/*
+Thing 7) Wave generator
+5 properties:
+    1) oscillator (int)
+    2) amplifier (float)
+    3) modulator (double)
+    4) title (std::string)
+    5) filter (double)
+3 things it can do:
+    1) generate a sine wave
+    2) modulate the wave
+    3) filter the wave
+ */
+
+/*
+Thing 8) CPU
+5 properties:
+    1) name (std::string)
+    2) size in kb (double)
+    3) speed in rpm (int)
+    4) cpu usage (float)
+    5) amount of power used in watt/hour (double)
+3 things it can do:
+    1) measure usage
+    2) run internal applications
+    3) store presets
+ */
+
+/*
+Thing 9) Speakers
+5 properties:
+    1) cone size in in (float)
+    2) driver capacity in ohm (float)
+    3) driver capacity in watt (double)
+    4) output level in SPL (float)
+    5) efficiency (double)
+3 things it can do:
+    1) play generated sounds
+    2) change output level
+    3) measure efficiency
+ */
+
 /*
 Thing 10) Synthesizer
 5 properties:
