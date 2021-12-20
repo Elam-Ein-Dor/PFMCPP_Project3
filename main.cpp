@@ -64,31 +64,17 @@ Part1 will be broken up into 5 separate steps
 3) Move the Thing 10 pseudo-code to after your Thing1-4 in the project.
 */
 
-/*
-Thing 10)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
 
 
 
 /*
 Thing 1) Coffee Corner
 5 properties:
-    1) amount of customers per day
-    2) number of milk and milk substitutes
-    3) number of sweeteners
-    4) number of mugs
-    5) price of coffee per cup
+    1) amount of customers per day (int)
+    2) number of milk and milk substitutes (int)
+    3) number of sweeteners (int)
+    4) number of mugs (int)
+    5) price of coffee per cup (double)
 3 things it can do:
     1) make coffee
     2) charge customers
@@ -98,11 +84,11 @@ Thing 1) Coffee Corner
 /*
 Thing 2) Theater
 5 properties:
-    1) number of ticket booths
-    2) variety of snacks and drinks
-    3) number of seats
-    4) name of theater
-    5) price of ticket per person
+    1) number of ticket booths (int)
+    2) variety of snacks and drinks (double)
+    3) number of seats (int)
+    4) name of theater (std::string)
+    5) price of ticket per person (float)
 3 things it can do:
     1) sell tickets
     2) show movies
@@ -112,11 +98,11 @@ Thing 2) Theater
 /*
 Thing 3) Gym
 5 properties:
-    1) number of showers
-    2) number of weights
-    3) price of monthly subscription
-    4) names of personal trainers
-    5) average number of people per day
+    1) number of showers (double)
+    2) number of weights (double)
+    3) price of monthly subscription (float)
+    4) names of personal trainers (std::string)
+    5) average number of people per day (float)
 3 things it can do:
     1) sell monthly subscriptions
     2) provide personal training sessions
@@ -126,18 +112,30 @@ Thing 3) Gym
 /*
 Thing 4) Piano
 5 properties:
-    1) number of keys
-    2) type of piano
-    3) size of piano
-    4) name of brand
-    5) number of pedals
+    1) number of keys (int)
+    2) type of piano (std::string)
+    3) size of piano (double)
+    4) name of brand (std::string)
+    5) number of pedals (int)
 3 things it can do:
     1) play notes
     2) mute notes
     3) change volume of notes
  */
-
-
+ 
+/*
+Thing 10) Synthesizer
+5 properties:
+    1) Interface
+    2) Display
+    3) Wave generator
+    4) CPU
+    5) Speakers
+3 things it can do:
+    1) Generate a sound
+    2) Play sounds
+    3) Store presets
+ */
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
