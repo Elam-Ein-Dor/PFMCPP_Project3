@@ -57,59 +57,59 @@ Thing: Car Wash
  */
 
 /*
-Thing 1)
+Thing 1) Coffee Corner
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) amount of customers per day
+    2) number of milk and milk substitutes
+    3) number of sweeteners
+    4) number of mugs
+    5) price of coffee per cup
 3 things it can do:
-    1)
-    2)
-    3)
+    1) make coffee
+    2) charge customers
+    3) add flavourings to made coffee
  */
 
 /*
-Thing 2)
+Thing 2) Theater
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of ticket booths
+    2) variety of snacks and drinks
+    3) number of seats
+    4) name of theater
+    5) price of ticket per person
 3 things it can do:
-    1)
-    2)
-    3)
+    1) sell tickets
+    2) show movies
+    3) sell snacks and drinks
  */
 
 /*
-Thing 3)
+Thing 3) Gym
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of showers
+    2) number of weights
+    3) price of monthly subscription
+    4) names of personal trainers
+    5) average number of people per day
 3 things it can do:
-    1)
-    2)
-    3)
+    1) sell monthly subscriptions
+    2) provide personal training sessions
+    3) monitor customer frequency
  */
 
 /*
-Thing 4)
+Thing 4) Piano
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of keys
+    2) type of piano
+    3) size of piano
+    4) name of brand
+    5) number of pedals
 3 things it can do:
-    1)
-    2)
-    3)
+    1) play notes
+    2) mute notes
+    3) change volume of notes
  */
 
 
