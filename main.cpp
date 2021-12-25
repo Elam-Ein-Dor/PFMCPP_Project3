@@ -302,6 +302,9 @@ struct Gym
     void setPersonalTrainer(std::string personalTrainerName, float sessionLength = 2.5f, double sessionTime = 1000);
     //monitor customer frequency
     double getUserFreq(float numDailyPeople, int numDays = 30);
+    
+    Member newMember;
+    Member oldMember;
 };
 
 /*
