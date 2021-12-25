@@ -297,7 +297,7 @@ struct Gym
     };
 
     //sell monthly subscriptions
-    double sellMonthlyPass(std::string userName, float subscriptionPrice = 29.99f, int numMonths = 6);
+    double sellMonthlyPass(Member member, float subscriptionPrice = 29.99f, int numMonths = 6);
     //provide personal training session
     void setPersonalTrainer(std::string personalTrainerName, float sessionLength = 2.5f, double sessionTime = 1000);
     //monitor customer frequency
