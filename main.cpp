@@ -215,7 +215,8 @@ bool CoffeeCorner::addFlavour(bool needsFlavour, int getFlavour)
         getFlavour = 2;
         return true;
     }
-        return false;
+    
+    return false; FIXME
 }
 
 struct Theater
@@ -356,6 +357,7 @@ int Gym::Member::giveReward(int subsctiptionType, std::string rewardName, int re
         rewardName = "none";
         rewardAmount = 0;
     }
+    
     return rewardAmount;
 }
 
@@ -387,7 +389,7 @@ int Piano::muteNote(bool playOrMute, bool stringPadOn)
     {
         return 0;
     }
-    
+     FIXME remove this blank line
     else
     {
         if (stringPadOn == true)
@@ -395,7 +397,7 @@ int Piano::muteNote(bool playOrMute, bool stringPadOn)
             return 50;
         }
         
-        return 100;
+        return 100;  FIXME: this should be outside of the `else` block
     }
 }
 
