@@ -215,10 +215,7 @@ bool CoffeeCorner::addFlavour(bool needsFlavour, int getFlavour)
         getFlavour = 2;
         return true;
     }
-    else
-    {
         return false;
-    }
 }
 
 struct Theater
@@ -236,8 +233,7 @@ struct Theater
 
 double Theater::sellTicket(int numTickets, double ticketPriceCharge)
 {
-    double totalPrice = numTickets * ticketPriceCharge;
-    return totalPrice;
+    return numTickets * ticketPriceCharge;
 }
 
 void Theater::playMovie(int loadMovie, bool lightsOn, bool trailerOrFeature)
@@ -391,16 +387,15 @@ int Piano::muteNote(bool playOrMute, bool stringPadOn)
     {
         return 0;
     }
+    
     else
     {
         if (stringPadOn == true)
         {
             return 50;
         }
-        else
-        {
-            return 100;
-        }
+        
+        return 100;
     }
 }
 
@@ -421,10 +416,8 @@ int Piano::volumeDown(bool quietMode, int numPedal)
             return 75;
         }
     }
-    else
-    {
-        return 100;
-    }
+    
+    return 100;
 }
 
 struct Interface
@@ -446,10 +439,8 @@ int Interface::noteOn(int numKey, bool noteIsOn)
     {
         return numKey;
     }
-    else
-    {
-        return 0;
-    }
+    
+    return 0;
 }
 
 double Interface::changeParamSlidePos(double paramSlidePos, double moveSlideBy)
@@ -629,10 +620,8 @@ double Speakers::setOutputLevel(bool mute, double changeVolume)
     {
         return 0;
     }
-    else
-    {
-        return changeVolume;
-    }
+    
+    return changeVolume;
 }
 
 double Speakers::lookupEfficiency(double splLevel, double wattCapacity, double coneSize)
