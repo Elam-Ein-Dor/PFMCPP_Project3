@@ -215,8 +215,7 @@ bool CoffeeCorner::addFlavour(bool needsFlavour, int getFlavour)
         getFlavour = 2;
         return true;
     }
-    
-    return false; FIXME
+    return false;
 }
 
 struct Theater
@@ -389,16 +388,14 @@ int Piano::muteNote(bool playOrMute, bool stringPadOn)
     {
         return 0;
     }
-     FIXME remove this blank line
     else
     {
         if (stringPadOn == true)
         {
             return 50;
         }
-        
-        return 100;  FIXME: this should be outside of the `else` block
-    }
+    }    
+    return 100;
 }
 
 int Piano::volumeDown(bool quietMode, int numPedal)
