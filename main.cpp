@@ -114,7 +114,7 @@ double CoffeeCorner::charge(double getCupPrice)
     int totalNumCups = 2;
     getCupPrice = coffeeCupPrice;
     double totalCharge = totalNumCups * getCupPrice;
-    std::cout << "Your charge is: " << totalCharge;
+    std::cout << "Your charge is: " << totalCharge  << "\n";
     return totalCharge;
 }
 
@@ -172,17 +172,15 @@ double Theater::sellRefreshments(bool sellSnacks, int snackType, bool sellDrinks
     int itemsSold = 0;
     if (sellSnacks == true)
     {
-        std::cin >> snackType;
-        itemsSold += 1;
+        itemsSold += snackType;
     }
 
     if (sellDrinks == true)
     {
-        std::cin >> drinkType;
-        itemsSold += 1;
+        itemsSold += drinkType;
     }
 
-    std::cout << "You sold " << itemsSold << "snacks and/or drinks!\n";
+    std::cout << "You sold " << itemsSold << " snacks and/or drinks!\n";
     return itemsSold;
 }
 
@@ -239,7 +237,7 @@ void Gym::setPersonalTrainer(std::string personalTrainerName, float sessionLengt
     sessionLength = 1.5f;
     sessionTime = 2;
 
-    std::cout << "You have scheduled a session with: \n" << personalTrainerName << "at: \n" << sessionTime << "for: " << sessionLength << " hours\n";
+    std::cout << "You have scheduled a session with: " << personalTrainerName << "\n" << "at: " << sessionTime << "\n" << "for: " << sessionLength << " hours\n";
 }
 
 double Gym::getUserFreq(double numDailyPeople, int numDays)
@@ -309,11 +307,13 @@ Piano::Piano()
 
 double Piano::playNote(int numKey, double playTime)
 {
+    /*
     std::cout << "what key would you like to play? (insert key number)\n";
     std::cin >> numKey;
     std::cout << "how long would you like to play the note? (insert time in ms)\n";
     std::cin >> playTime;
-    return playTime;
+    */
+    return playTime * numKey;
 }
 
 int Piano::muteNote(bool playOrMute, bool stringPadOn)
@@ -379,12 +379,12 @@ int Interface::noteOn(int numKey, bool noteIsOn)
         return numKey;
     }
     
-    return 0;
+    return numKey;
 }
 
 double Interface::changeParamSlidePos(double paramSlidePos, double moveSlideBy)
 {
-    std::cin >> moveSlideBy;
+    // std::cin >> moveSlideBy;
     paramSlidePos += moveSlideBy;
     return paramSlidePos;
 }
@@ -429,11 +429,12 @@ Display::Display()
 void Display::showMenu(int numMenu, int color)
 {
     color = numMenu;
+    std::cout << "enjoy this menu! \n";
 }
 
 std::string Display::paramDetail(int numParam, bool paramHasTooltip)
 {
-    std::cout << numParam << "Parameter name\n";
+    std::cout << numParam << ": Parameter name\n";
 
     if (paramHasTooltip == true)
     {
@@ -496,7 +497,7 @@ double WaveGenerator::waveFilter(double filterFreq, int filterType, double filte
         filterSlope = 6;
     }
 
-    std::cin >> filterFreq;
+    // std::cin >> filterFreq;
     return filterFreq * filterSlope;
 }
 
@@ -511,7 +512,7 @@ struct CPU
     CPU();
 
     void measureUse(int useTime, double usageCPU, bool overclocked = false);
-    int runApp(int numApp = 5, bool nativeOrExternal = true, float needCPU = 42.7f);
+    float runApp(int numApp = 5, bool nativeOrExternal = true, float needCPU = 42.7f);
     int storePreset(int numPreset, double needMemory = 45.2, std::string namePreset = "Good Patch");
 };
 
@@ -532,9 +533,9 @@ void CPU::measureUse(int useTime, double usageCPU, bool overclocked)
     std::cout << "CPU usage is: " << usageCPU << "!\n";
 }
 
-int CPU::runApp(int numApp, bool nativeOrExternal, float needCPU)
+float CPU::runApp(int numApp, bool nativeOrExternal, float needCPU)
 {
-    std::cin >> numApp;
+    // std::cin >> numApp;
     needCPU = mUsageCPU;
     
     if (nativeOrExternal == false)
@@ -542,7 +543,7 @@ int CPU::runApp(int numApp, bool nativeOrExternal, float needCPU)
         needCPU *= 2;
     }
 
-    return 1;
+    return numApp * needCPU;
 }
 
 int CPU::storePreset(int numPreset, double needMemory, std::string namePreset)
@@ -625,14 +626,14 @@ void Synthesizer::genSound(WaveGenerator oscillatorTwo, double genSineWave)
 
 void Synthesizer::playSound(Speakers mainSpeakers, int playSound, double setOutputLevel)
 {
-    std::cout<< mainSpeakers.mConeSize;
+    std::cout<< mainSpeakers.mConeSize << "\n";
     setOutputLevel = mainSpeakers.setOutputLevel();
-    std::cin >> playSound;
+    std::cout << playSound << "\n";
 }
 
 double Synthesizer::savePreset(CPU mainProcessingUnit, int storePreset, std::string presetName)
 {
-    std::cout << mainProcessingUnit.kbSize;
+    std::cout << mainProcessingUnit.kbSize << "\n";
     storePreset += 1;
     presetName = "New Preset";
     return storePreset;
@@ -659,37 +660,59 @@ int main()
     
     CoffeeCorner streetCafe;
     streetCafe.makeCoffee(4, 1, true);
-    
+    streetCafe.charge(5.99);
+    streetCafe.addFlavour(true, 3);
+
     Theater hallmark;
     hallmark.playMovie(1, false, true);
+    hallmark.sellTicket();
+    hallmark.sellRefreshments(true, 2, true, 4);
 
     Gym crushIt;
     crushIt.setPersonalTrainer("chuck", 2.5f, 1000);
-    
+    Gym::Member example;
+    crushIt.sellMonthlyPass(example, 29.99, 6);
+    std::cout << "average user number is: " << crushIt.getUserFreq(45, 30) << "\n";
+
     Gym::Member patron;
     patron.punchPass(5);
+    patron.bringAFriend(true, 4);
+    patron.giveReward(1, "10% Discount", 10);
 
     Piano grandPiano;
     grandPiano.volumeDown(false, 1);
+    grandPiano.playNote(40, 42.25);
+    grandPiano.muteNote(false, false);
 
     Interface mainInt;
-    mainInt.lookupMenu(2, "Parameters"); //?
+    mainInt.lookupMenu(2, "Parameters");
+    std::cout << mainInt.noteOn(44, true) << "\n";
+    mainInt.changeParamSlidePos(45, 15.5);
 
     Display mainHud;
-    mainHud.showMenu(3, 7); //?
+    mainHud.showMenu(3, 7);
+    mainHud.paramDetail(4, true);
+    mainHud.adjustBrightness(41, 11);
 
     WaveGenerator waveGen;
     waveGen.genSineWave(250, 3);
+    waveGen.waveMod(4, "Ring");
+    waveGen.waveFilter(500, 2, 18.0);
 
     CPU mainCpu;
     mainCpu.measureUse(4, 250, true);
+    mainCpu.runApp(5, true, 37.6f);
+    mainCpu.storePreset(1, 67.9, "new patch");
 
     Speakers mains;
     mains.playSound(2, 75.25, 300);
     std::cout << "your speaker efficiency is: " << mains.lookupEfficiency(75, 100, 6.5) << " dB/w \n";
+    mains.setOutputLevel(false, 24.76);
 
     Synthesizer synth;
     synth.genSound(waveGen, 0.462);
+    synth.playSound(mains, 4, 82.53);
+    synth.savePreset(mainCpu, 1, "new preset");
 
     std::cout << "good to go!" << std::endl;
 }
