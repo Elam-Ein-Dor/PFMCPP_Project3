@@ -204,7 +204,7 @@ struct Gym
 
         Member();
 
-        void punchPass(Member member, int passesLeft);
+        void punchPass(int passesLeft);
         bool bringAFriend(bool hasFriendPass = true, int friendPassType = 2);
         int giveReward(int subsctiptionType, std::string rewardName = "10% Discount", int rewardAmount = 10);
     };
@@ -214,9 +214,6 @@ struct Gym
     double sellMonthlyPass(Member member, double subscriptionPrice = 29.99, int numMonths = 6);
     void setPersonalTrainer(std::string personalTrainerName, float sessionLength = 2.5f, double sessionTime = 1000);
     double getUserFreq(double numDailyPeople, int numDays = 30);
-    
-    Member newMember;
-    Member oldMember;
 };
 
 Gym::Gym()
@@ -242,7 +239,7 @@ void Gym::setPersonalTrainer(std::string personalTrainerName, float sessionLengt
     sessionLength = 1.5f;
     sessionTime = 2;
 
-    std::cout << "You have scheduled a session with: " << personalTrainerName << "\n at: " << sessionTime << "\n for: " << sessionLength << " hours\n";
+    std::cout << "You have scheduled a session with: \n" << personalTrainerName << "at: \n" << sessionTime << "for: " << sessionLength << " hours\n";
 }
 
 double Gym::getUserFreq(double numDailyPeople, int numDays)
@@ -251,9 +248,8 @@ double Gym::getUserFreq(double numDailyPeople, int numDays)
     return userFreq;
 }
 
-void Gym::Member::punchPass(Gym::Member, int passesRemaining)
+void Gym::Member::punchPass(int passesRemaining)
 {
-    Member existingMember;
     passesLeft -= 1;
     passesRemaining = passesLeft;
     std::cout << "you have " << passesRemaining << " passes left!\n";
@@ -397,15 +393,15 @@ void Interface::lookupMenu(int menuButton, std::string screenName)
 {
     if (menuButton == 1)
     {
-        screenName = "Parameters";
+        screenName = "Menu: Parameters\n";
     }
     else if (menuButton == 2)
     {
-        screenName = "Oscillators";
+        screenName = "Menu: Oscillators\n";
     }
     else
     {
-        screenName = "Main";
+        screenName = "Menu: Main\n";
     }
     std::cout << screenName;
 }
@@ -624,7 +620,7 @@ Synthesizer::Synthesizer()
 void Synthesizer::genSound(WaveGenerator oscillatorTwo, double genSineWave)
 {
     oscillatorTwo.mOscillator = 2;
-    std::cout << genSineWave;
+    std::cout << "Sine wave set to: " << genSineWave << "\n";
 }
 
 void Synthesizer::playSound(Speakers mainSpeakers, int playSound, double setOutputLevel)
@@ -670,14 +666,17 @@ int main()
     Gym crushIt;
     crushIt.setPersonalTrainer("chuck", 2.5f, 1000);
     
+    Gym::Member patron;
+    patron.punchPass(5);
+
     Piano grandPiano;
     grandPiano.volumeDown(false, 1);
 
     Interface mainInt;
-    mainInt.lookupMenu(2, "Parameters");
+    mainInt.lookupMenu(2, "Parameters"); //?
 
     Display mainHud;
-    mainHud.showMenu(3, 7);
+    mainHud.showMenu(3, 7); //?
 
     WaveGenerator waveGen;
     waveGen.genSineWave(250, 3);
@@ -687,9 +686,10 @@ int main()
 
     Speakers mains;
     mains.playSound(2, 75.25, 300);
+    std::cout << "your speaker efficiency is: " << mains.lookupEfficiency(75, 100, 6.5) << " dB/w \n";
 
     Synthesizer synth;
-    synth.genSound(WaveGenerator, 0.462); 
+    synth.genSound(waveGen, 0.462);
 
     std::cout << "good to go!" << std::endl;
 }
