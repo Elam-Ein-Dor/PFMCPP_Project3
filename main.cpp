@@ -112,7 +112,12 @@ struct Theater
     double sellRefreshments(bool sellSnacks, int snackType, bool sellDrinks = true, int drinkType = 3);
 };
 
-Theater::Theater()
+Theater::Theater() : 
+numTicketBooths(4),
+totalNumSnacksAndDrinks(30),
+totalNumSeats(120),
+theaterName("Cinema"),
+ticketPrice(31.99)
 {
     std::cout << "Theater \n";
 }
