@@ -346,6 +346,7 @@ struct Piano
     double playNote(int numKey, double playTime = 45.0);
     int muteNote(bool playOrMute = false, bool stringPadOn = true);
     void volumeDown(bool quietMode = true, int numPedal = 2);
+    void arpeggio(int keyNum, int range, int interval);
 };
 
 Piano::Piano()
@@ -400,6 +401,17 @@ void Piano::volumeDown(bool quietMode, int numPedal)
     std::cout << "volume has changed to 0\n";
 }
 
+void Piano::arpeggio(int keyNum, int range, int interval)
+{
+    range = keyNum + range;
+    std::cout << "your arpeggio would consist of the following notes: ";
+    for( ; keyNum <= range; keyNum += interval)
+    {
+        std::cout << keyNum << ", ";
+    }
+    std::cout << "try it out! \n";
+}
+
 struct Interface
 {
     float paramKnobPos = 45.5f;
@@ -413,6 +425,7 @@ struct Interface
     int noteOn(int numKey = 40, bool noteIsOn = true);
     double changeParamSlidePos(double paramSlidePos, double moveSlideBy = 15.5);
     void lookupMenu(int menuButton, std::string screenName = "Pads");
+    double modWheelAuto(double initPos, double finPos, double increment, bool moveUp);
 };
 
 Interface::Interface()
@@ -454,6 +467,25 @@ void Interface::lookupMenu(int menuButton, std::string screenName)
     std::cout << screenName;
 }
 
+double Interface::modWheelAuto(double initPos, double finPos, double increment, bool moveUp)
+{
+    std::cout << "mod wheel automated to move from: " << initPos << "\n";
+    double position;
+    if(moveUp == true)
+    {
+        for(position = initPos; position <= finPos; position += increment)
+        {
+            std::cout << position << "\n";
+        }
+    }
+    for(position = initPos; position >= finPos; position -= increment)
+        {
+            std::cout << position << "\n";
+        }
+    std::cout << "to: " << finPos << "\n";
+    return position;
+}
+
 struct Display
 {
     float heightCM = 15.2f;
@@ -467,6 +499,7 @@ struct Display
     void showMenu(int numMenu = 4, int color = 5);
     std::string paramDetail(int numParam, bool paramHasTooltip = true);
     double adjustBrightness(double brightness = 45.0, double addBrightness = 15.0);
+    double fastForward(double speed, double targetTime, double currentTime);
 };
 
 Display::Display()
@@ -498,6 +531,15 @@ double Display::adjustBrightness(double brightness, double addBrightness)
     return brightness;
 }
 
+double Display::fastForward(double speed, double targetTime, double currentTime)
+{
+    for(time = currentTime; time <= targetTime; time += speed)
+    {
+        std::cout << time << ", ";
+    }
+    return time;
+}
+
 struct WaveGenerator
 {
     int mOscillator = 1;
@@ -511,6 +553,7 @@ struct WaveGenerator
     void genSineWave(double sineWaveFreq, int oscillator = 1);
     double waveMod(int waveModType = 4, std::string waveModName = "Ring Mod");
     double waveFilter(double filterFreq, int filterType = 3, double filterSlope = 12.0);
+    void distort(int sineWaveFreq, int distortion, int scale);
 };
 
 WaveGenerator::WaveGenerator()
@@ -549,6 +592,14 @@ double WaveGenerator::waveFilter(double filterFreq, int filterType, double filte
     return filterFreq * filterSlope;
 }
 
+void WaveGenerator::distort(int sineWaveFreq, int distortion, int scale)
+{
+    for( ; sineWaveFreq <= distortion; sineWaveFreq *= scale)
+    {
+        std::cout << "applying distortion at: " << sineWaveFreq << "hz \n";
+    }
+}
+
 struct CPU
 {
     std::string name = "CPU";
@@ -562,6 +613,7 @@ struct CPU
     void measureUse(int useTime, double usageCPU, bool overclocked = false);
     float runApp(int numApp = 5, bool nativeOrExternal = true, float needCPU = 42.7f);
     int storePreset(int numPreset, double needMemory = 45.2, std::string namePreset = "Good Patch");
+    void memoryScan(double kbSize, int rpmSpeed);
 };
 
 CPU::CPU()
@@ -600,6 +652,15 @@ int CPU::storePreset(int numPreset, double needMemory, std::string namePreset)
     needMemory = kbSize / 10;
     namePreset = "newPreset";
     return numPreset;
+}
+
+void CPU::memoryScan(double totalSize, int internalSpeed)
+{
+    int i;
+    for (i = 2; i <= totalSize; i *= (2 * internalSpeed))
+    {
+        std::cout << i << "kb of memory scanned, at: " << 2 * internalSpeed << "kb/s \n";
+    }
 }
 
 struct Speakers
@@ -739,30 +800,35 @@ int main()
     grandPiano.volumeDown(false, 1);
     grandPiano.playNote(40, 42.25);
     grandPiano.muteNote(false, false);
+    grandPiano.arpeggio(40, 24, 3);
     */
     /*
     Interface mainInt;
     mainInt.lookupMenu(2, "Parameters");
     std::cout << mainInt.noteOn(44, true) << "\n";
     mainInt.changeParamSlidePos(45, 15.5);
+    mainInt.modWheelAuto(45.5, 75.6, 0.3, true);
     */
     /*
     Display mainHud;
     mainHud.showMenu(3, 7);
     mainHud.paramDetail(4, true);
     mainHud.adjustBrightness(41, 11);
+    std::cout << "fast forwarding time: " << mainHud.fastForward(50, 1900, 1300) << "\n";
     */
     /*
     WaveGenerator waveGen;
     waveGen.genSineWave(250, 3);
     waveGen.waveMod(4, "Ring");
     waveGen.waveFilter(500, 2, 18.0);
+    waveGen.distort(500, 20000, 3);
     */
     /*
     CPU mainCpu;
     mainCpu.measureUse(4, 250, true);
     mainCpu.runApp(5, true, 37.6f);
     mainCpu.storePreset(1, 67.9, "new patch");
+    mainCpu.memoryScan(2056 * 8, 3);
     */
     /*
     Speakers mains;
