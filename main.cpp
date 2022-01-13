@@ -82,6 +82,7 @@ struct CoffeeCorner
     void makeCoffee(int getMilkOrSubstitute, int getCoffee, bool checkNeedSweetener = false);
     double charge (double getCupPrice = 7.45);
     bool addFlavour(bool needsFlavour = true, int getFlavour = 4);
+    void heatWater(int waterTemp, int targetTemp);
 };
 
 CoffeeCorner::CoffeeCorner()
@@ -125,6 +126,16 @@ bool CoffeeCorner::addFlavour(bool needsFlavour, int getFlavour)
     return false;
 }
 
+void CoffeeCorner::heatWater(int waterTemp, int targetTemp)
+{
+    for (waterTemp = 32; waterTemp < targetTemp; waterTemp += 10)
+    {
+        std::cout << "water temperature is currently at: " << waterTemp << " and is heating to target: " << targetTemp << "\n";
+    }
+
+    std::cout << "water temperature has reached: " << targetTemp << "\n";
+}
+
 struct Theater
 {
     int numTicketBooths = 3;
@@ -138,6 +149,7 @@ struct Theater
     double sellTicket(int numTickets = 3, double ticketPrice = 24.99);
     void playMovie(int loadMovie, bool lightsOnOrOff, bool trailerOrFeature = true);
     double sellRefreshments(bool sellSnacks, int snackType, bool sellDrinks = true, int drinkType = 3);
+    void showtimeReel(int movie, double showtime, int totalNumMovies);
 };
 
 Theater::Theater() : 
@@ -186,6 +198,15 @@ double Theater::sellRefreshments(bool sellSnacks, int snackType, bool sellDrinks
     return itemsSold;
 }
 
+void Theater::showtimeReel(int movie, double showtime, int totalNumMovies)
+{
+    for(movie = 0; movie < totalNumMovies; movie += 1)
+    {
+        std::cout << "the showtime for movie: " << movie << " is: " << showtime << "\n";
+        showtime += 90;
+    }
+}
+
 struct Gym
 {
     double numShowers = 40;
@@ -207,6 +228,7 @@ struct Gym
         void punchPass(int passesLeft);
         bool bringAFriend(bool hasFriendPass = true, int friendPassType = 2);
         int giveReward(int subsctiptionType, std::string rewardName = "10% Discount", int rewardAmount = 10);
+        void trackProgress(int goal, int passesRemaining);
     };
 
     Gym();
@@ -214,6 +236,7 @@ struct Gym
     double sellMonthlyPass(Member member, double subscriptionPrice = 29.99, int numMonths = 6);
     void setPersonalTrainer(std::string personalTrainerName, float sessionLength = 2.5f, double sessionTime = 1000);
     double getUserFreq(double numDailyPeople, int numDays = 30);
+    void checkIncome(double numDailyPeople, int numDays, double subscriptionPrice);
 };
 
 Gym::Gym()
@@ -246,6 +269,15 @@ double Gym::getUserFreq(double numDailyPeople, int numDays)
 {
     double userFreq = numDailyPeople / numDays;
     return userFreq;
+}
+
+void Gym::checkIncome(double numDailyPeople, int numDays, double subscriptionPrice)
+{
+    int i;
+    for(i = numDays; i <= 90; i += numDays)
+    {
+        std::cout << "the average income for " << i << " days is: " << (numDailyPeople * subscriptionPrice) / i << "\n";
+    }
 }
 
 void Gym::Member::punchPass(int passesRemaining)
@@ -285,6 +317,20 @@ int Gym::Member::giveReward(int subsctiptionType, std::string rewardName, int re
     }
     
     return rewardAmount;
+}
+
+void Gym::Member::trackProgress(int goal, int passesRemaining)
+{
+    int i;
+    for(i = 0; i < goal; i +=1)
+    {
+        std::cout << "you are " << goal - i << " (insert parameter here) away from your goal of: " << goal << "\n";
+        passesRemaining -= 1;
+        std::cout << "you have " << passesRemaining << " passes left \n";
+    }
+    std::cout << "you have reached your goal!!! \n";
+    passesRemaining -= 1;
+    std::cout << "you also have " << passesRemaining << " passes left \n";
 }
 
 struct Piano
@@ -659,62 +705,76 @@ double Synthesizer::savePreset(CPU mainProcessingUnit, int storePreset, std::str
 int main()
 {
     Example::main();
-    
+    /*
     CoffeeCorner streetCafe;
     streetCafe.makeCoffee(4, 1, true);
     streetCafe.charge(5.99);
     streetCafe.addFlavour(true, 3);
-
+    streetCafe.heatWater(42, 212);
+    */
+    /*
     Theater hallmark;
     hallmark.playMovie(1, false, true);
     hallmark.sellTicket();
     hallmark.sellRefreshments(true, 2, true, 4);
-
+    hallmark.showtimeReel(1, 1250, 5);
+    */
+    /*
     Gym crushIt;
     crushIt.setPersonalTrainer("chuck", 2.5f, 1000);
     Gym::Member example;
     crushIt.sellMonthlyPass(example, 29.99, 6);
     std::cout << "average user number is: " << crushIt.getUserFreq(45, 30) << "\n";
-
+    crushIt.checkIncome(34, 30, 24.99);
+    */
+    /*
     Gym::Member patron;
     patron.punchPass(5);
     patron.bringAFriend(true, 4);
     patron.giveReward(1, "10% Discount", 10);
-
+    patron.trackProgress(5, 10);
+    */
+    /*
     Piano grandPiano;
     grandPiano.volumeDown(false, 1);
     grandPiano.playNote(40, 42.25);
     grandPiano.muteNote(false, false);
-
+    */
+    /*
     Interface mainInt;
     mainInt.lookupMenu(2, "Parameters");
     std::cout << mainInt.noteOn(44, true) << "\n";
     mainInt.changeParamSlidePos(45, 15.5);
-
+    */
+    /*
     Display mainHud;
     mainHud.showMenu(3, 7);
     mainHud.paramDetail(4, true);
     mainHud.adjustBrightness(41, 11);
-
+    */
+    /*
     WaveGenerator waveGen;
     waveGen.genSineWave(250, 3);
     waveGen.waveMod(4, "Ring");
     waveGen.waveFilter(500, 2, 18.0);
-
+    */
+    /*
     CPU mainCpu;
     mainCpu.measureUse(4, 250, true);
     mainCpu.runApp(5, true, 37.6f);
     mainCpu.storePreset(1, 67.9, "new patch");
-
+    */
+    /*
     Speakers mains;
     mains.playSound(2, 75.25, 300);
     std::cout << "your speaker efficiency is: " << mains.lookupEfficiency(75, 100, 6.5) << " dB/w \n";
     mains.setOutputLevel(false, 24.76);
-
+    */
+    /*
     Synthesizer synth;
     synth.genSound(waveGen, 0.462);
     synth.playSound(mains, 4, 82.53);
     synth.savePreset(mainCpu, 1, "new preset");
-
+    */
     std::cout << "good to go!" << std::endl;
 }
