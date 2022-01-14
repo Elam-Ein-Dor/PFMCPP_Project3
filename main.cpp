@@ -669,13 +669,14 @@ struct Speakers
     float ohmCapacity = 4.8f;
     double mWattCapacity = 24.65;
     double mSplLevel = 78.4;
-    double efficiency = 62.35;
+    double mEfficiency = 62.35;
 
     Speakers();
 
     void playSound(int numSound, double splLevel, int playTime = 450);
     double setOutputLevel(bool mute = false, double changeVolume = 25.3);
     double lookupEfficiency(double splLevel, double wattCapacity, double coneSize = 8);
+    void heatOutput(double efficiency, double wattCapacity, double splLevel);
 };
 
 Speakers::Speakers()
@@ -704,7 +705,19 @@ double Speakers::lookupEfficiency(double splLevel, double wattCapacity, double c
     splLevel = mSplLevel;
     wattCapacity = mWattCapacity;
     coneSize = mConeSize;
-    return (splLevel * (coneSize * wattCapacity)) / efficiency;
+    return (splLevel * (coneSize * wattCapacity)) / mEfficiency;
+}
+
+void Speakers::heatOutput(double efficiency, double wattCapacity, double splLevel)
+{
+    for( ; splLevel < 90; splLevel += 0.5)
+    {
+        std::cout << "for SPL: " << splLevel << "\n";
+      for(auto i = wattCapacity; i < efficiency; i += 1)
+        {
+            std::cout << " current efficiency is: " << i / efficiency << "\n";
+        }
+    }
 }
 
 struct Synthesizer
@@ -720,6 +733,7 @@ struct Synthesizer
     void genSound(WaveGenerator oscillatorTwo, double genSineWave = 0.7863);
     void playSound(Speakers mainSpeakers, int playSound, double setOutputLevel = 75.3);
     double savePreset(CPU mainProcessingUnit, int storePreset, std::string presetName = "New Preset");
+    void maxCpu(CPU mainProcessingUnit, double memoryNeed);
 };  
 
 Synthesizer::Synthesizer()
@@ -748,6 +762,14 @@ double Synthesizer::savePreset(CPU mainProcessingUnit, int storePreset, std::str
     return storePreset;
 }
 
+void Synthesizer::maxCpu(CPU mainProcessingUnit, double memoryNeed)
+{
+    for(auto i = mainProcessingUnit.kbSize; i > memoryNeed; i /= 2)
+    {
+        std::cout << "reduced memory size is: " << i - memoryNeed << "\n";
+    }
+}
+
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
 
@@ -766,81 +788,73 @@ double Synthesizer::savePreset(CPU mainProcessingUnit, int storePreset, std::str
 int main()
 {
     Example::main();
-    /*
+    
     CoffeeCorner streetCafe;
     streetCafe.makeCoffee(4, 1, true);
     streetCafe.charge(5.99);
     streetCafe.addFlavour(true, 3);
     streetCafe.heatWater(42, 212);
-    */
-    /*
+    
     Theater hallmark;
     hallmark.playMovie(1, false, true);
     hallmark.sellTicket();
     hallmark.sellRefreshments(true, 2, true, 4);
     hallmark.showtimeReel(1, 1250, 5);
-    */
-    /*
+    
     Gym crushIt;
     crushIt.setPersonalTrainer("chuck", 2.5f, 1000);
     Gym::Member example;
     crushIt.sellMonthlyPass(example, 29.99, 6);
     std::cout << "average user number is: " << crushIt.getUserFreq(45, 30) << "\n";
     crushIt.checkIncome(34, 30, 24.99);
-    */
-    /*
+    
     Gym::Member patron;
     patron.punchPass(5);
     patron.bringAFriend(true, 4);
     patron.giveReward(1, "10% Discount", 10);
     patron.trackProgress(5, 10);
-    */
-    /*
+    
     Piano grandPiano;
     grandPiano.volumeDown(false, 1);
     grandPiano.playNote(40, 42.25);
     grandPiano.muteNote(false, false);
     grandPiano.arpeggio(40, 24, 3);
-    */
-    /*
+    
     Interface mainInt;
     mainInt.lookupMenu(2, "Parameters");
     std::cout << mainInt.noteOn(44, true) << "\n";
     mainInt.changeParamSlidePos(45, 15.5);
     mainInt.modWheelAuto(45.5, 75.6, 0.3, true);
-    */
-    /*
+    
     Display mainHud;
     mainHud.showMenu(3, 7);
     mainHud.paramDetail(4, true);
     mainHud.adjustBrightness(41, 11);
     std::cout << "fast forwarding time: " << mainHud.fastForward(50, 1900, 1300) << "\n";
-    */
-    /*
+    
     WaveGenerator waveGen;
     waveGen.genSineWave(250, 3);
     waveGen.waveMod(4, "Ring");
     waveGen.waveFilter(500, 2, 18.0);
     waveGen.distort(500, 20000, 3);
-    */
-    /*
+   
     CPU mainCpu;
     mainCpu.measureUse(4, 250, true);
     mainCpu.runApp(5, true, 37.6f);
     mainCpu.storePreset(1, 67.9, "new patch");
-    mainCpu.memoryScan(2056 * 8, 3);
-    */
-    /*
+    mainCpu.memoryScan(2056 * 16, 3);
+   
     Speakers mains;
     mains.playSound(2, 75.25, 300);
     std::cout << "your speaker efficiency is: " << mains.lookupEfficiency(75, 100, 6.5) << " dB/w \n";
     mains.setOutputLevel(false, 24.76);
-    */
-    /*
+    mains.heatOutput(95, 65, 75);
+    
     Synthesizer synth;
     synth.genSound(waveGen, 0.462);
     synth.playSound(mains, 4, 82.53);
     synth.savePreset(mainCpu, 1, "new preset");
-    */
+    synth.maxCpu(mainCpu, 48);
+    
     std::cout << "good to go!" << std::endl;
 }
