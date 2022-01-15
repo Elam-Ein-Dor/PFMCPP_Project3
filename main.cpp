@@ -200,7 +200,7 @@ double Theater::sellRefreshments(bool sellSnacks, int snackType, bool sellDrinks
 
 void Theater::showtimeReel(int movie, double showtime, int totalNumMovies)
 {
-    for(movie = 0; movie < totalNumMovies; movie ++)
+    for(movie = 0; movie < totalNumMovies; ++movie)
     {
         std::cout << "the showtime for movie: " << movie << " is: " << showtime << "\n";
         showtime += 90;
@@ -320,15 +320,14 @@ int Gym::Member::giveReward(int subsctiptionType, std::string rewardName, int re
 
 void Gym::Member::trackProgress(int goal, int passesRemaining)
 {
-    int i;
-    for(i = 0; i < goal; i ++)
+    for(auto i = 0; i < goal; ++i)
     {
         std::cout << "you are " << goal - i << " (insert parameter here) away from your goal of: " << goal << "\n";
-        passesRemaining --;
+        --passesRemaining;
         std::cout << "you have " << passesRemaining << " passes left \n";
     }
     std::cout << "you have reached your goal!!! \n";
-    passesRemaining --;
+    --passesRemaining;
     std::cout << "you also have " << passesRemaining << " passes left \n";
 }
 
@@ -711,7 +710,7 @@ void Speakers::heatOutput(double efficiency, double wattCapacity, double splLeve
     for( ; splLevel < 90; splLevel += 0.5)
     {
         std::cout << "for SPL: " << splLevel << "\n";
-        for(auto i = wattCapacity; i < efficiency; i ++)
+        for(auto i = wattCapacity; i < efficiency; ++i)
         {
             std::cout << " current efficiency is: " << i / efficiency << "\n";
         }
