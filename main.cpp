@@ -128,9 +128,9 @@ bool CoffeeCorner::addFlavour(bool needsFlavour, int getFlavour)
 
 void CoffeeCorner::heatWater(int waterTemp, int targetTemp)
 {
-    for (waterTemp = 32; waterTemp < targetTemp; waterTemp += 10)
+    for (auto i = waterTemp; i < targetTemp; i += 10)
     {
-        std::cout << "water temperature is currently at: " << waterTemp << " and is heating to target: " << targetTemp << "\n";
+        std::cout << "water temperature is currently at: " << i << " and is heating to target: " << targetTemp << "\n";
     }
 
     std::cout << "water temperature has reached: " << targetTemp << "\n";
@@ -200,7 +200,7 @@ double Theater::sellRefreshments(bool sellSnacks, int snackType, bool sellDrinks
 
 void Theater::showtimeReel(int movie, double showtime, int totalNumMovies)
 {
-    for(movie = 0; movie < totalNumMovies; movie += 1)
+    for(movie = 0; movie < totalNumMovies; movie ++)
     {
         std::cout << "the showtime for movie: " << movie << " is: " << showtime << "\n";
         showtime += 90;
@@ -273,8 +273,7 @@ double Gym::getUserFreq(double numDailyPeople, int numDays)
 
 void Gym::checkIncome(double numDailyPeople, int numDays, double subscriptionPrice)
 {
-    int i;
-    for(i = numDays; i <= 90; i += numDays)
+    for(auto i = numDays; i <= 90; i += numDays)
     {
         std::cout << "the average income for " << i << " days is: " << (numDailyPeople * subscriptionPrice) / i << "\n";
     }
@@ -322,14 +321,14 @@ int Gym::Member::giveReward(int subsctiptionType, std::string rewardName, int re
 void Gym::Member::trackProgress(int goal, int passesRemaining)
 {
     int i;
-    for(i = 0; i < goal; i +=1)
+    for(i = 0; i < goal; i ++)
     {
         std::cout << "you are " << goal - i << " (insert parameter here) away from your goal of: " << goal << "\n";
-        passesRemaining -= 1;
+        passesRemaining --;
         std::cout << "you have " << passesRemaining << " passes left \n";
     }
     std::cout << "you have reached your goal!!! \n";
-    passesRemaining -= 1;
+    passesRemaining --;
     std::cout << "you also have " << passesRemaining << " passes left \n";
 }
 
@@ -479,9 +478,9 @@ double Interface::modWheelAuto(double initPos, double finPos, double increment, 
         }
     }
     for(position = initPos; position >= finPos; position -= increment)
-        {
-            std::cout << position << "\n";
-        }
+    {
+        std::cout << position << "\n";
+    }
     std::cout << "to: " << finPos << "\n";
     return position;
 }
@@ -656,8 +655,7 @@ int CPU::storePreset(int numPreset, double needMemory, std::string namePreset)
 
 void CPU::memoryScan(double totalSize, int internalSpeed)
 {
-    int i;
-    for (i = 2; i <= totalSize; i *= (2 * internalSpeed))
+    for(int i = 2; i <= totalSize; i *= (2 * internalSpeed))
     {
         std::cout << i << "kb of memory scanned, at: " << 2 * internalSpeed << "kb/s \n";
     }
@@ -713,7 +711,7 @@ void Speakers::heatOutput(double efficiency, double wattCapacity, double splLeve
     for( ; splLevel < 90; splLevel += 0.5)
     {
         std::cout << "for SPL: " << splLevel << "\n";
-      for(auto i = wattCapacity; i < efficiency; i += 1)
+        for(auto i = wattCapacity; i < efficiency; i ++)
         {
             std::cout << " current efficiency is: " << i / efficiency << "\n";
         }
@@ -793,7 +791,7 @@ int main()
     streetCafe.makeCoffee(4, 1, true);
     streetCafe.charge(5.99);
     streetCafe.addFlavour(true, 3);
-    streetCafe.heatWater(42, 212);
+    streetCafe.heatWater(82, 112);
     
     Theater hallmark;
     hallmark.playMovie(1, false, true);
@@ -812,7 +810,7 @@ int main()
     patron.punchPass(5);
     patron.bringAFriend(true, 4);
     patron.giveReward(1, "10% Discount", 10);
-    patron.trackProgress(5, 10);
+    patron.trackProgress(2, 10);
     
     Piano grandPiano;
     grandPiano.volumeDown(false, 1);
@@ -824,7 +822,7 @@ int main()
     mainInt.lookupMenu(2, "Parameters");
     std::cout << mainInt.noteOn(44, true) << "\n";
     mainInt.changeParamSlidePos(45, 15.5);
-    mainInt.modWheelAuto(45.5, 75.6, 0.3, true);
+    mainInt.modWheelAuto(73.5, 75.6, 0.3, true);
     
     Display mainHud;
     mainHud.showMenu(3, 7);
@@ -848,7 +846,7 @@ int main()
     mains.playSound(2, 75.25, 300);
     std::cout << "your speaker efficiency is: " << mains.lookupEfficiency(75, 100, 6.5) << " dB/w \n";
     mains.setOutputLevel(false, 24.76);
-    mains.heatOutput(95, 65, 75);
+    mains.heatOutput(95, 94, 88);
     
     Synthesizer synth;
     synth.genSound(waveGen, 0.462);
